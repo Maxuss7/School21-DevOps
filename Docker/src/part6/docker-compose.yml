@@ -1,0 +1,22 @@
+services:
+  fastcgi-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastcgi-server
+    networks:
+      - app-net
+
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    networks:
+      - app-net
+    ports:
+      - "80:8080"
+    volumes:
+      - ./nginx_proxy_container/:/etc/nginx
+
+networks:
+  app-net:
+    driver: bridge

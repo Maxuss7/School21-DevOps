@@ -1,0 +1,85 @@
+stages:
+  - build
+  - style
+  - test
+  - deploy
+
+build_job:
+  stage: build
+  tags:
+    - build
+  script:
+    - rm -rf artifacts
+    - mkdir -p artifacts/{cat,grep} 
+    - (cd src/cat && make clean && make s21_cat)
+    - (cd src/grep && make clean && make s21_grep)
+    - cp src/cat/s21_cat artifacts/cat
+    - cp src/grep/s21_grep artifacts/grep
+  artifacts:
+    paths:
+      - artifacts
+    expire_in: 30 days
+  after_script:
+    - chmod +x src/tg_notify.sh
+    - src/tg_notify.sh "BUILD"
+
+style_job:
+  stage: style
+  needs:
+    - build_job
+  tags:
+    - style
+  script:
+    - clang-format -style=Google -n --Werror --verbose src/cat/s21_cat.c
+    - clang-format -style=Google -n --Werror --verbose src/grep/s21_grep.c
+  after_script:
+    - chmod +x src/tg_notify.sh
+    - src/tg_notify.sh "STYLE"
+
+test_job:
+  stage: test
+  needs:
+    - build_job
+    - style_job
+  tags:
+    - test
+  script:
+    - cp src/cat/{Makefile,*.txt} artifacts/cat
+    - cp src/grep/{Makefile,*.txt} artifacts/grep
+    - (cd artifacts/cat && make test)
+    - (cd artifacts/grep && make test)
+    - rm -f artifacts/cat/*.txt
+    - rm -f artifacts/grep/*.txt
+  after_script:
+    - |
+      if [ "$CI_JOB_STATUS" == "success" ]; then
+        echo "Tests passed" | tee artifacts/test_status.txt
+      else
+        echo "Tests failed" | tee artifacts/test_status.txt
+      fi
+    - chmod +x src/tg_notify.sh
+    - src/tg_notify.sh "TEST"
+  allow_failure: false
+  artifacts:
+    paths:
+      - artifacts
+
+deploy_job:
+  stage: deploy
+  needs:
+    - build_job
+    - style_job
+    - test_job
+  tags:
+    - deploy
+  script:
+    - echo "Deploying..."
+    - chmod +x src/copy.sh
+    - src/copy.sh
+  after_script:
+    - chmod +x src/tg_notify.sh
+    - src/tg_notify.sh "DEPLOYYYY"
+  allow_failure: false
+  when: manual
+
+  
