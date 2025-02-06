@@ -13,7 +13,7 @@ Welcome to the repository showcasing DevOps projects I completed as part of the 
 3. [**Project 3: Linux Monitoring v1.0 [Bash]**](./Linux_Monitoring_v1/src/REPORT.md)  
    Developed Bash scripts for system and file system redearch.
 
-4. [**In Progress... Project 4: Linux Monitoring v2.0 [Prometheus and Grafana]**](./Linux_Monitoring_v2/src/REPORT.md)  
+4. [**Project 4: Linux Monitoring v2.0 [Prometheus and Grafana]**](./Linux_Monitoring_v2/src/REPORT.md)  
    Enhanced monitoring with Prometheus and Grafana for visualizing system metrics.
 
 5. [**Project 5: Docker**](./Docker/src/REPORT.md)  
