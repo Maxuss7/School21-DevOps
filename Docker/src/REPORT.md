@@ -219,19 +219,6 @@ RUN groupadd -r nginx && useradd -r -g nginx nginx && \
     chown -R nginx:nginx /app && \
     chown -R nginx:nginx /etc/nginx && \
     chown -R nginx:nginx /var/run/nginx && \
-    chmod u-s /usr/bin/gpasswd && \
-    chmod u-s /usr/bin/newgrp && \
-    chmod u-s /bin/su && \
-    chmod u-s /bin/mount && \
-    chmod u-s /bin/umount && \
-    chmod u-s /usr/bin/chsh && \
-    chmod u-s /usr/bin/chfn && \
-    chmod ug-s /usr/sbin/pam_extrausers_chkpwd && \
-    chmod ug-s /usr/bin/expiry && \
-    chmod 755 /usr/bin/wall && \
-    chmod 755 /sbin/unix_chkpwd && \
-    chmod 755 /usr/bin/chage && \
-    chmod 755 /usr/bin/passwd
 
 USER nginx
 
@@ -243,9 +230,6 @@ HEALTHCHECK --interval=5m --timeout=10s CMD curl -f http://localhost:80 || exit 
 # Run the FastCGI server and nginx
 CMD ["sh", "-c", "spawn-fcgi -p 8080 /app/fastcgi_server && nginx -g 'daemon off;'"]
 ```
-
-- Вывод dockle для изменненного образа
-  ![](part5/2.png)
 
 ## Part 6. Базовый **Docker Compose**
 
