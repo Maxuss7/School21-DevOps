@@ -21,3 +21,4 @@ Welcome to the repository showcasing DevOps projects I completed as part of the 
 
 6. [**Project 6: GitLab CI/CD**](./CI_CD/src/REPORT.md)  
    Automated builds, testing, and deployments with GitLab CI/CD pipelines.
+7-14. To be continued..
