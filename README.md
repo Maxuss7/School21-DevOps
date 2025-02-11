@@ -19,6 +19,7 @@ Welcome to the repository showcasing DevOps projects I completed as part of the 
 5. [**Project 5: Docker**](./Docker/src/REPORT.md)  
    Learned the foundations of containerization, including creating, managing, and deploying Docker containers.
 
-6. [**Project 6: GitLab CI/CD**](./CI_CD/src/REPORT.md)  
-   Automated builds, testing, and deployments with GitLab CI/CD pipelines.
+6. [**Project 6: GitLab CI/CD**](./CI_CD/src/REPORT.md)   
+   Automated builds, testing, and deployments with GitLab CI/CD pipelines.  
+
 7-14. To be continued..
