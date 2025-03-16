@@ -172,7 +172,7 @@
 
 
 - Сеть: \
-![part5_network](misc/images/part5_network.png)
+![part5_network](img/part5_network.png)
 
 - ##### Подними пять виртуальных машин (3 рабочие станции (ws11, ws21, ws22) и 2 роутера (r1, r2)).
 - #### 5.1. Настройка адресов машин
